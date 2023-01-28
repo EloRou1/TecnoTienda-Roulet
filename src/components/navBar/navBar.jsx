@@ -1,29 +1,32 @@
+import * as React from "react";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+import { Link , NavLink} from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Carrito from "../Carrito/Carrito"
+
+
+
 
  const NavBar = () => {
     return(
         <>
-            <Navbar collapseOnSelect expand="lg" bg="ligth" variant="ligth">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">TecnoTienda</Navbar.Brand>
+                    
+                    <NavLink to="/">TecnoTienda</NavLink>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#hogar">Hogar</Nav.Link>
-                        <Nav.Link href="#television">Television</Nav.Link>
-                        <Nav.Link href="#audioVideo">Audio y Video</Nav.Link>
-                        <Nav.Link href="#perifericos">Perifericos</Nav.Link>
-                        
+                        <NavLink className="btn btn-dark" to="/categoria/Hogar">Hogar</NavLink>
+                        <NavLink className="btn btn-dark"to="/categoria/Television">Television</NavLink>
+                        <NavLink className="btn btn-dark" to="/categoria/AudioYVideo">Audio y video</NavLink>
+                        <NavLink className="btn btn-dark" to="/categoria/Perifericos">Perifericos</NavLink>
                     </Nav>
-                    
+                    <Nav>
+                        <Link to="/carrito">🛒</Link>
+                    </Nav>
                     </Navbar.Collapse>
-                    <Carrito/> 
             </Container>
         </Navbar>
              
