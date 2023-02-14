@@ -1,44 +1,45 @@
-import { Link } from "react-router-dom"
-import { productos } from "../../utils/productos"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { gFetch,  } from "../../utils/productos"
+import ItemList from "../ItemList/ItemList"
+
 
 
 
 const ItemListContainer = ( ) => {
+    const [productos, setProductos]= useState([])
+    const {categoriaId} = useParams()
+    
+    
+    
+    useEffect(()=>{
+        if(categoriaId){
+            gFetch()
+            .then(respuestaPromesa => {
+                setProductos(respuestaPromesa.filter(items =>items.categoria === categoriaId))
+        })        
+        .catch(err => console.log(err))
+        }
+        else{
+        gFetch()
+            .then(respuestaPromesa => {
+                setProductos(respuestaPromesa)
+            })        
+            .catch(err => console.log(err))
 
+        }
+        
+            
+    },[categoriaId])
+    
+
+   
+   
+    
     return (
         <div  className='container'> 
-            
-            
-                <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        flexWrap: "wrap",
-                    }}
-                    
-                >
-                    {
-                       
-                        productos.map( producto =>  <div className='col-4 p-2 mt-5'>
-                                                        <div key={producto.id} className='card w-100 text-center shadow'>
-                                                            <div className='card-head h-15'>
-                                                                {producto.nombre}
-                                                            </div>
-                                                            <div className='card-body'>
-                                                                <img src={producto.foto} className='w-100 h-50' />
-                                                                    <h6> Categoría: {producto.categoria}</h6>
-                                                                    <h6>Precio: {producto.precio}</h6>
-                                                                    <h6>{producto.descripcion}</h6>
-                                                            </div>
-                                                            <div className='card-footer'>
-                                                                <Link to={`/detail/${producto.id}`}>
-                                                                    <button className='btn btn-outline-dark w-100' >Ir a Detalle</button>
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                    ) 
-                    }
-                </div>
+          <ItemList productos={productos} />
+                
                     
             
         </div>

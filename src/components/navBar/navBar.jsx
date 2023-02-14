@@ -18,10 +18,10 @@ import Navbar from 'react-bootstrap/Navbar';
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink className="btn btn-dark" to="/categoria/Hogar">Hogar</NavLink>
-                        <NavLink className="btn btn-dark"to="/categoria/Television">Television</NavLink>
-                        <NavLink className="btn btn-dark" to="/categoria/AudioYVideo">Audio y video</NavLink>
-                        <NavLink className="btn btn-dark" to="/categoria/Perifericos">Perifericos</NavLink>
+                        <NavLink className={({ isActive })=> isActive ? 'btn btn-success' : 'btn btn-dark'} to="/categoria/hogar">Hogar</NavLink>
+                        <NavLink className={({ isActive })=> isActive ? 'btn btn-success' : 'btn btn-dark'}to="/categoria/television">Television</NavLink>
+                        <NavLink className={({ isActive })=> isActive ? 'btn btn-success' : 'btn btn-dark'} to="/categoria/audioYVideo">Audio y video</NavLink>
+                        <NavLink className={({ isActive })=> isActive ? 'btn btn-success' : 'btn btn-dark'} to="/categoria/perifericos">Perifericos</NavLink>
                     </Nav>
                     <Nav>
                         <Link to="/carrito">🛒</Link>
